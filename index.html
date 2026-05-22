@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mauricio Miralles — Staff Backend Engineer</title>
+  <meta name="description" content="Staff Backend Engineer with 25+ years in Java/Kotlin microservices, cloud-native systems, and distributed architecture. Remote.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:       #F5F2EC;
+      --bg2:      #EDE9E1;
+      --ink:      #1A1714;
+      --ink2:     #4A4540;
+      --ink3:     #8A837A;
+      --accent:   #C44B2B;
+      --accent2:  #1B3A6B;
+      --rule:     #D4CFC8;
+      --chip-bg:  #E4DFD7;
+      --chip-ink: #2E2A26;
+      --tag-bg:   #1B3A6B;
+      --tag-ink:  #EAF0FA;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+      --mono:  'DM Mono', monospace;
+    }
+    [data-theme="dark"] {
+      --bg:       #141210;
+      --bg2:      #1E1C19;
+      --ink:      #F0EBE3;
+      --ink2:     #B0A89E;
+      --ink3:     #6A6460;
+      --accent:   #E06040;
+      --accent2:  #6A9FD8;
+      --rule:     #2E2C28;
+      --chip-bg:  #252320;
+      --chip-ink: #C8C0B8;
+      --tag-bg:   #1E3A60;
+      --tag-ink:  #9EC4F0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      transition: background .3s, color .3s;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      transition: background .3s, border-color .3s;
+    }
+    .nav-name {
+      font-family: var(--mono);
+      font-size: .8rem;
+      letter-spacing: .08em;
+      color: var(--ink2);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-size: .8rem;
+      letter-spacing: .06em;
+      color: var(--ink3);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .theme-btn {
+      background: none; border: 1px solid var(--rule); border-radius: 20px;
+      padding: .25rem .65rem; cursor: pointer; font-size: .75rem;
+      font-family: var(--mono); color: var(--ink2); transition: all .2s;
+      letter-spacing: .04em;
+    }
+    .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── LAYOUT ── */
+    main { max-width: 860px; margin: 0 auto; padding: 100px clamp(1.5rem, 5vw, 3rem) 80px; }
+
+    /* ── HERO ── */
+    .hero { padding: 3rem 0 3.5rem; border-bottom: 1px solid var(--rule); }
+    .hero-label {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .hero-label::before {
+      content: '';
+      display: inline-block; width: 24px; height: 1px; background: var(--accent);
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 1.0;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin-bottom: .6rem;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--ink2);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      font-family: var(--mono); font-size: .75rem; letter-spacing: .05em;
+    }
+    .meta-pill {
+      display: flex; align-items: center; gap: .4rem;
+      background: var(--chip-bg); color: var(--chip-ink);
+      padding: .35rem .8rem; border-radius: 20px;
+    }
+    .meta-pill span { color: var(--ink3); }
+    .hero-contact {
+      margin-top: 1.5rem;
+      display: flex; flex-wrap: wrap; gap: 1rem;
+    }
+    .contact-link {
+      font-family: var(--mono); font-size: .75rem; letter-spacing: .05em;
+      color: var(--accent2); text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s;
+    }
+    .contact-link:hover { border-color: var(--accent2); }
+
+    /* ── SECTIONS ── */
+    section { padding: 3rem 0; border-bottom: 1px solid var(--rule); }
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 1.8rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1; height: 1px; background: var(--rule);
+    }
+
+    /* ── SUMMARY ── */
+    .summary p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--ink2);
+      line-height: 1.8;
+      max-width: 680px;
+    }
+    .summary p strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+    .skill-row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: baseline; }
+    .skill-cat {
+      font-family: var(--mono); font-size: .68rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink3); min-width: 130px; padding-top: .15rem;
+    }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .chip {
+      background: var(--chip-bg); color: var(--chip-ink);
+      font-family: var(--mono); font-size: .73rem;
+      padding: .3rem .7rem; border-radius: 4px;
+      letter-spacing: .03em;
+      transition: background .2s, color .2s;
+    }
+    .chip.hi {
+      background: var(--tag-bg); color: var(--tag-ink);
+    }
+
+    /* ── EXPERIENCE ── */
+    .experience { display: flex; flex-direction: column; gap: 2.8rem; }
+    .job { display: grid; grid-template-columns: 1fr; gap: .15rem; }
+    @media (min-width: 600px) {
+      .job { grid-template-columns: 200px 1fr; gap: 0 2.5rem; }
+    }
+    .job-meta { padding-top: .15rem; }
+    .job-period {
+      font-family: var(--mono); font-size: .68rem;
+      letter-spacing: .05em; color: var(--ink3);
+      margin-bottom: .3rem;
+    }
+    .job-company {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--accent2);
+      margin-bottom: .1rem;
+      line-height: 1.2;
+    }
+    .job-location {
+      font-size: .78rem; color: var(--ink3);
+      font-family: var(--mono); letter-spacing: .03em;
+    }
+    .job-body {}
+    .job-role {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: .2rem;
+    }
+    .job-context {
+      font-size: .85rem;
+      color: var(--ink3);
+      margin-bottom: .8rem;
+      font-style: italic;
+    }
+    .job-bullets {
+      list-style: none;
+      display: flex; flex-direction: column; gap: .5rem;
+    }
+    .job-bullets li {
+      font-size: .9rem;
+      color: var(--ink2);
+      line-height: 1.65;
+      display: flex; gap: .6rem;
+      align-items: baseline;
+    }
+    .job-bullets li::before {
+      content: '–';
+      color: var(--accent);
+      flex-shrink: 0;
+      font-family: var(--mono);
+    }
+
+    /* earlier career */
+    .earlier {
+      background: var(--bg2);
+      border-radius: 8px;
+      padding: 1.4rem 1.6rem;
+      font-size: .88rem;
+      color: var(--ink2);
+      line-height: 1.75;
+      transition: background .3s;
+    }
+    .earlier strong { color: var(--ink); font-weight: 500; }
+
+    /* ── CPD ── */
+    .cpd-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: .55rem;
+    }
+    .cpd-list li {
+      font-size: .9rem; color: var(--ink2);
+      display: flex; gap: .6rem; align-items: baseline;
+    }
+    .cpd-list li::before {
+      content: '→';
+      font-family: var(--mono);
+      color: var(--accent2);
+      flex-shrink: 0;
+      font-size: .8rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .08em;
+      color: var(--ink3);
+    }
+    footer a { color: var(--ink3); }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(18px);
+      animation: fadeUp .6s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero > * { animation: fadeUp .6s ease both; }
+    .hero > *:nth-child(1) { animation-delay: .05s; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    .hero > *:nth-child(3) { animation-delay: .18s; }
+    .hero > *:nth-child(4) { animation-delay: .24s; }
+    .hero > *:nth-child(5) { animation-delay: .30s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .nav-links .hide-sm { display: none; }
+      .skill-cat { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="#">MM</a>
+  <div class="nav-links">
+    <a href="#experience" class="hide-sm">Experience</a>
+    <a href="#skills" class="hide-sm">Skills</a>
+    <a href="#cpd" class="hide-sm">Education</a>
+    <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Staff Backend Engineer</div>
+    <h1>Mauricio<br><em>Miralles</em></h1>
+    <p class="hero-sub">
+      25+ years building distributed systems in Java and Kotlin.
+      Microservices, event-driven architecture, and cloud-native delivery
+      across Travel, OTA, and Fintech. Available remotely from Madrid.
+    </p>
+    <div class="hero-meta">
+      <div class="meta-pill">📍 <span>Madrid, Spain</span></div>
+      <div class="meta-pill">🌐 <span>Remote only</span></div>
+      <div class="meta-pill">✈️ <span>Travel / OTA focus</span></div>
+    </div>
+    <div class="hero-contact">
+      <a class="contact-link" href="mailto:mauricio.miralles@gmail.com">mauricio.miralles@gmail.com</a>
+      <a class="contact-link" href="https://github.com/mahouu" target="_blank" rel="noopener">github.com/mahouu</a>
+      <a class="contact-link" href="tel:+34607367423">+34 607 367 423</a>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <section id="summary" class="summary">
+    <div class="section-label">Profile</div>
+    <p>
+      Staff-level backend engineer with deep roots in <strong>Java and Kotlin microservices</strong>,
+      event-driven systems on <strong>Kafka</strong>, and cloud-native delivery on <strong>AWS Kubernetes</strong>.
+      Spent the last decade across Travel OTA and Fintech — from search-to-booking platforms at
+      Lastminute.com and Diwoh, to payment security integrations at Premier Inn and WorldFirst.
+      Known for bridging <strong>business requirements and technical delivery</strong>, mentoring engineers,
+      and owning problems end-to-end without losing touch with the code.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="skill-cat">Languages</div>
+        <div class="skill-chips">
+          <span class="chip hi">Kotlin</span>
+          <span class="chip hi">Java 11/17</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Scala</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Frameworks</div>
+        <div class="skill-chips">
+          <span class="chip hi">Spring Boot</span>
+          <span class="chip">Spring WebFlux</span>
+          <span class="chip">Hibernate</span>
+          <span class="chip">MyBatis</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Architecture</div>
+        <div class="skill-chips">
+          <span class="chip hi">Microservices</span>
+          <span class="chip hi">Event-driven / Kafka</span>
+          <span class="chip">Hexagonal Arch.</span>
+          <span class="chip">DDD</span>
+          <span class="chip">TDD</span>
+          <span class="chip">Clean Code</span>
+          <span class="chip">SOLID</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Cloud & DevOps</div>
+        <div class="skill-chips">
+          <span class="chip hi">AWS</span>
+          <span class="chip hi">Kubernetes</span>
+          <span class="chip">Docker</span>
+          <span class="chip">ArgoCD</span>
+          <span class="chip">GitLab CI</span>
+          <span class="chip">Jenkins</span>
+          <span class="chip">Grafana</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Data</div>
+        <div class="skill-chips">
+          <span class="chip">MySQL</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">Oracle</span>
+          <span class="chip">MongoDB</span>
+          <span class="chip">Spark / Hadoop</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Testing</div>
+        <div class="skill-chips">
+          <span class="chip">JUnit 5</span>
+          <span class="chip">Mockito</span>
+          <span class="chip">Cucumber / BDD</span>
+          <span class="chip">JMeter</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Experience</div>
+    <div class="experience">
+
+      <div class="job">
+        <div class="job-meta">
+          <div class="job-period">Jun 2022 – Present</div>
+          <div class="job-company">Lastminute.com</div>
+          <div class="job-location">Remote</div>
+        </div>
+        <div class="job-body">
+          <div class="job-role">Senior Product Engineer</div>
+          <div class="job-context">Hotel supply · Full customer journey from search to confirmed booking</div>
+          <ul class="job-bullets">
+            <li>Lead backend development across hotel supply microservices in Kotlin/Spring, covering availability, pricing, and booking flows.</li>
+            <li>Designed multi-provider integration architecture enabling rapid onboarding of new hotel suppliers.</li>
+            <li>Owned CI/CD pipelines using trunk-based development on GitLab + ArgoCD, deploying to Kubernetes in production.</li>
+            <li>Established observability practices via Grafana dashboards and Slack-based production alerting.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-meta">
+          <div class="job-period">Apr 2021 – May 2022</div>
+          <div class="job-company">Whitbread<br>/ Premier Inn</div>
+          <div class="job-location">London (Remote)</div>
+        </div>
+        <div class="job-body">
+          <div class="job-role">Senior Software Engineer</div>
+          <div class="job-context">Payments security · PSD2/3DS compliance re-platforming</div>
+          <ul class="job-bullets">
+            <li>Delivered RESTful and async microservices (Spring WebFlux) as part of a new payment provider integration under PSD2 requirements.</li>
+            <li>Built event-driven pipelines using Kafka; deployed containerised services to AWS Kubernetes via Jenkins CI/CD.</li>
+            <li>Contributed to the migration of the hotel management core to Oracle Opera.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-meta">
+          <div class="job-period">Jun 2020 – Feb 2021</div>
+          <div class="job-company">Sngular</div>
+          <div class="job-location">Remote</div>
+        </div>
+        <div class="job-body">
+          <div class="job-role">Senior Software Engineer / Solutions Architect</div>
+          <div class="job-context">Orange Bank · Vithas · Two concurrent engagements</div>
+          <ul class="job-bullets">
+            <li>Orange Bank: Co-built microservice infrastructure from scratch in Java 11/Spring Boot — REST + Kafka, deployed on AWS; captured requirements as Cucumber acceptance tests.</li>
+            <li>Vithas: Designed a cloud-based middleware architecture to unify systems across multiple hospital sites; delivered successfully and progressed to Phase 2.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-meta">
+          <div class="job-period">Apr 2019 – Oct 2019</div>
+          <div class="job-company">WorldFirst</div>
+          <div class="job-location">London</div>
+        </div>
+        <div class="job-body">
+          <div class="job-role">Senior Software Engineer</div>
+          <div class="job-context">Fintech · High-throughput pricing microservice for a global FX platform</div>
+          <ul class="job-bullets">
+            <li>Built and optimised a pricing microservice in Java/Spring Boot + MyBatis achieving 4,000 requests/minute under load testing.</li>
+            <li>Designed a Quartz-scheduled FTP pricing-file distribution system with MySQL-backed configuration persistence.</li>
+            <li>Participated in Java developer hiring: coding test reviews and technical interviews.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-meta">
+          <div class="job-period">Mar 2018 – Apr 2019</div>
+          <div class="job-company">Solera</div>
+          <div class="job-location">Madrid</div>
+        </div>
+        <div class="job-body">
+          <div class="job-role">Senior Software Engineer</div>
+          <div class="job-context">Big Data · Vehicle identification number ecosystem migration</div>
+          <ul class="job-bullets">
+            <li>Migrated a legacy PL/SQL-heavy VIN pipeline to a modern Spark/Scala/Hadoop stack using hexagonal architecture, DDD, and SOLID principles.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-meta">
+          <div class="job-period">Aug 2017 – Mar 2018</div>
+          <div class="job-company">Diwoh</div>
+          <div class="job-location">Madrid</div>
+        </div>
+        <div class="job-body">
+          <div class="job-role">Principal Engineer</div>
+          <div class="job-context">Travel OTA startup · End-to-end platform architecture</div>
+          <ul class="job-bullets">
+            <li>Designed the full platform architecture on Google Cloud from inception, including provider integration strategy.</li>
+            <li>Built availability and booking flow integration with HotelBeds provider; stack: Angular 4, Spring, MongoDB.</li>
+            <li>Evaluated and discarded GraphQL for geo-data in favour of MongoDB — early technical decision that saved significant rework.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-meta">
+          <div class="job-period">Mar 2012 – Aug 2017</div>
+          <div class="job-company">Rumbo /<br>Lastminute.com</div>
+          <div class="job-location">Madrid</div>
+        </div>
+        <div class="job-body">
+          <div class="job-role">Senior Software Developer</div>
+          <div class="job-context">Travel OTA · SEO, transfers, cruises, and core platform (5 years)</div>
+          <ul class="job-bullets">
+            <li>Full-lifecycle development across SEO, transfer, and cruise verticals using Spring, Hibernate, JBoss, and Oracle.</li>
+            <li>QA champion for a 42-person team; led retrospectives and agile ceremonies.</li>
+            <li>Regular production deployment responsibilities and multilingual (ES/EN/IT) stakeholder communication.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-meta">
+          <div class="job-period">2000 – 2012</div>
+          <div class="job-company">Earlier career</div>
+          <div class="job-location">Madrid</div>
+        </div>
+        <div class="job-body">
+          <div class="earlier">
+            <strong>Blinklearning, TCP Sistemas / Yell, Secuenzia / ICM, Nextel / Indra, Artheria, Razona/Coverlink.</strong><br>
+            Progressively senior Java/J2EE roles across e-learning, government, enterprise consultancy, fintech, and marketing. Built foundational expertise in Spring, SOAP web services, XML integrations, and enterprise database systems.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CPD -->
+  <section id="cpd">
+    <div class="section-label">Education & Development</div>
+    <ul class="cpd-list">
+      <li>Clean Architecture: Patterns, Practices and Principles — PluralSight (2018)</li>
+      <li>TDD with JUnit 5 — PluralSight (2018)</li>
+      <li>Spark Applications with Scala & Cloudera — PluralSight (2018)</li>
+      <li>Domain-Driven Design, Hexagonal Architecture, Code Smells — BIT courses (2015–2018)</li>
+      <li>Technical Software Development — Garben, Madrid (1997–2000)</li>
+      <li>Regular attendee: Madrid JUG and local engineering meetups</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p>Mauricio Miralles · Madrid, Spain · <a href="mailto:mauricio.miralles@gmail.com">mauricio.miralles@gmail.com</a></p>
+</footer>
+
+<script>
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark' || (!saved && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+
+  function toggleTheme() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  }
+
+  // Fade-in sections on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = 1;
+        e.target.style.transform = 'translateY(0)';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('section').forEach(s => {
+    s.style.opacity = 0;
+    s.style.transform = 'translateY(16px)';
+    s.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(s);
+  });
+</script>
+
+</body>
+</html>
